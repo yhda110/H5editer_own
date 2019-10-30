@@ -85,7 +85,7 @@
       },
       create () {
         this.$store.dispatch('createTheme', 'spa')
-        this.$store.dispatch('addPage')
+        // this.$store.dispatch('addPage')
       },
       showPreView (itemId) {
         this.isShowPreView = true

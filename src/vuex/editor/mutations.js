@@ -87,6 +87,7 @@ const mutations = {
     })
   },
   [types.CREATE_THEME] (state, data) {
+    console.log(2222222222222222, data)
     state.themeList.push(data)
   },
   [types.ADD_THEME_SUCCESS] (state, data) {
@@ -142,7 +143,8 @@ const mutations = {
   },
   [types.DELETE_THEME] (state, data) {
     state.themeList.findIndex((value, index, arr) => {
-      if (value === data) {
+      if (value && value.id === data.workId) {
+        console.log(index)
         state.themeList.splice(index, 1)
       }
     })

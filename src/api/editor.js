@@ -11,7 +11,6 @@ const saveTheme = (theme) => {
   return http.post('/api/works/', themeFactory(theme))
 }
 const delTheme = (theme) => {
-  // console.log(theme)
   return http.del('/api/works', theme)
 }
 const updateTheme = (theme) => {
@@ -31,6 +30,7 @@ const getVideoListByThemeId = (_id) => {
 }
 // 保存信息加工
 const themeFactory = (data) => {
+  console.log('factory', data)
   if (typeof data.content === 'string') {
     data = JSON.parse(data.content)
   }

@@ -26,6 +26,7 @@ export const saveTheme = ({commit}, theme) => {
  */
 export const getUserThemeList = ({commit}, type) => {
   api.getUserThemeList(type).then((res) => {
+    console.log('res', res)
     commit(types.GET_USER_THEME_LIST, res)
   })
 }
@@ -36,16 +37,12 @@ export const getUserThemeList = ({commit}, type) => {
  */
 
 export const createTheme = ({commit}, type) => {
-  // return Promise.resolve(api.updateTheme(theme).then((res) => {
-  //   commit(types.UPDATE_THEME_SUCCESS, res)
-  // }))
   var theme = new Theme({type: type})
-  Promise.resolve(api.updateTheme(theme).then((res) => {
-    // commit(types.UPDATE_THEME_SUCCESS, res)
-    console.log('xxxx', res)
+  Promise.resolve(api.saveTheme(theme).then((res) => {
+    theme.id = res.data.wordId
+    commit(types.CREATE_THEME, theme)
+    commit(types.SET_CUR_EDITOR_THEME, theme)
   }))
-  // commit(types.CREATE_THEME, theme)
-  // commit(types.SET_CUR_EDITOR_THEME, theme)
 }
 
 /**
