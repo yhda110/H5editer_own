@@ -143,7 +143,6 @@ const mutations = {
   [types.DELETE_THEME] (state, data) {
     state.themeList.findIndex((value, index, arr) => {
       if (value && value.id === data.workId) {
-        console.log(index)
         state.themeList.splice(index, 1)
       }
     })

@@ -141,9 +141,9 @@ export const delPage = ({commit}, page) => {
 
 export const getPageByThemeId = ({dispatch, commit}, id) => {
   api.getPageByThemeId(id).then((res) => {
-    res = res.data
+    res = JSON.parse(res.data.content)
     commit(types.SET_CUR_EDITOR_THEME, res)
-    commit(types.SET_CUR_EDITOR_PAGE, JSON.parse(res.content).pages[0])
+    commit(types.SET_CUR_EDITOR_PAGE, res.pages[0])
   }).then(() => {
     dispatch('sortElementsByZindex')
   })

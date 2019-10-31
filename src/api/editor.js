@@ -30,11 +30,11 @@ const getVideoListByThemeId = (_id) => {
 }
 // 保存信息加工
 const themeFactory = (data) => {
-  if (typeof data.content === 'string') {
-    data = JSON.parse(data.content)
-  }
+  let id = data.id
+  data.content = data.content || JSON.stringify(data)
+  data.id = data.id || id
   let requestData = {
-    content: JSON.stringify(data),
+    content: data.content,
     name: data.name,
     workId: data.id || '',
     uid: 1

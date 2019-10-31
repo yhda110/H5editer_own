@@ -74,11 +74,13 @@
           })
           this.$message({
             type: 'success',
+            duration: 100,
             message: '删除成功!'
           })
         }).catch(() => {
           this.$message({
             type: 'info',
+            duration: 100,
             message: '已取消删除'
           })
         })

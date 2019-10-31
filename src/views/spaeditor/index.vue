@@ -179,16 +179,18 @@
           default:
         }
         this.$store.dispatch('addElement', param)
+        console.log('xxxxxxxxxxxx', this.$store.state.editor.editorTheme)
       },
       playAnimate () {
         this.$store.dispatch('playAnimate')
       },
       save () {
-        console.log('this.$store.state.editor.editorTheme :', this.$store.state.editor.editorTheme)
         let paramData = tools.vue2json(this.$store.state.editor.editorTheme)
+        paramData.id = this.itemId
         return this.$store.dispatch('saveTheme', paramData).then(() => {
           this.$message({
             message: '保存成功',
+            duration: 100,
             type: 'success'
           })
         })
