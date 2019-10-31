@@ -26,7 +26,6 @@ export const saveTheme = ({commit}, theme) => {
  */
 export const getUserThemeList = ({commit}, type) => {
   api.getUserThemeList(type).then((res) => {
-    console.log('res', res)
     commit(types.GET_USER_THEME_LIST, res)
   })
 }
@@ -38,8 +37,11 @@ export const getUserThemeList = ({commit}, type) => {
 
 export const createTheme = ({commit}, type) => {
   var theme = new Theme({type: type})
-  Promise.resolve(api.saveTheme(theme).then((res) => {
+  var page = new Page()
+  theme.pages.push(page)
+  return Promise.resolve(api.saveTheme(theme).then((res) => {
     theme.id = res.data.wordId
+    theme.cTime = res.curTime
     commit(types.CREATE_THEME, theme)
     commit(types.SET_CUR_EDITOR_THEME, theme)
   }))
@@ -139,9 +141,9 @@ export const delPage = ({commit}, page) => {
 
 export const getPageByThemeId = ({dispatch, commit}, id) => {
   api.getPageByThemeId(id).then((res) => {
-    console.log('byId', res)
-    commit(types.SET_CUR_EDITOR_THEME, res.data)
-    commit(types.SET_CUR_EDITOR_PAGE, JSON.parse(res.data.content).pages[0])
+    res = res.data
+    commit(types.SET_CUR_EDITOR_THEME, res)
+    commit(types.SET_CUR_EDITOR_PAGE, JSON.parse(res.content).pages[0])
   }).then(() => {
     dispatch('sortElementsByZindex')
   })
