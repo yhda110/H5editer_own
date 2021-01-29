@@ -51,7 +51,7 @@
     "eventsource-polyfill": "^0.9.6",
     "normalize.css": "^5.0.0",
     "url-loader": "^0.5.7",
-    "eslint": "^3.7.1",
+    "eslint": "^4.19.1",
     "eslint-config-standard": "^6.1.0",
     "eslint-friendly-formatter": "^2.0.5",
     "eslint-loader": "^1.5.0",
